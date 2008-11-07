@@ -113,6 +113,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uncas.Drawing\Uncas.Drawing.csproj">
+      <Project>{A3F86D5F-6762-491A-A173-6B278A236F6D}</Project>
+      <Name>Uncas.Drawing</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

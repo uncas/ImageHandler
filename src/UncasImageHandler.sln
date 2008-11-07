@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncasImageHandler", "UncasImageHandler\UncasImageHandler.csproj", "{2B772DD4-179D-4256-A669-29B89ED5B8AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uncas.Drawing", "Uncas.Drawing\Uncas.Drawing.csproj", "{A3F86D5F-6762-491A-A173-6B278A236F6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{2B772DD4-179D-4256-A669-29B89ED5B8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B772DD4-179D-4256-A669-29B89ED5B8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B772DD4-179D-4256-A669-29B89ED5B8AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F86D5F-6762-491A-A173-6B278A236F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F86D5F-6762-491A-A173-6B278A236F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F86D5F-6762-491A-A173-6B278A236F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F86D5F-6762-491A-A173-6B278A236F6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
