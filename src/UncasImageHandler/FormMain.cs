@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -34,6 +34,7 @@ namespace UncasImageHandler
         {
             btnSaveResizedImages.Text = ResizeText;
 
+            #region Subscribes to event handlers
             rbChooseFiles.CheckedChanged += new EventHandler(rbSourceMode_CheckedChanged);
             rbChooseFolder.CheckedChanged += new EventHandler(rbSourceMode_CheckedChanged);
             btnChooseInputFolder.Click += new EventHandler(btnChooseInputFolder_Click);
@@ -46,12 +47,17 @@ namespace UncasImageHandler
                 new ProgressChangedEventHandler(resizeWorker_ProgressChanged);
             resizeWorker.RunWorkerCompleted +=
                 new RunWorkerCompletedEventHandler(resizeWorker_RunWorkerCompleted);
+            #endregion
+
+            #region Sets folders on file and folder dialogs
             Environment.SpecialFolder myPictures =
                 Environment.SpecialFolder.MyPictures;
             string myPicturesPath = Environment.GetFolderPath(myPictures);
             openFileDialog1.InitialDirectory = myPicturesPath;
             folderBrowserDialog1.RootFolder = Environment.SpecialFolder.Desktop;
             folderBrowserDialog1.SelectedPath = myPicturesPath;
+            #endregion
+
             #region Input folder path
             string inputFolderPath = Properties.Settings.Default.InputFolderPath;
             if (inputFolderPath != null && inputFolderPath.Trim() != string.Empty)
@@ -59,6 +65,7 @@ namespace UncasImageHandler
             else
                 lblInputFolder.Text = myPicturesPath;
             #endregion
+
             #region Output folder path
             string outputFolderPath = Properties.Settings.Default.OutputFolderPath;
             if (outputFolderPath != null && outputFolderPath.Trim() != string.Empty)
@@ -66,7 +73,10 @@ namespace UncasImageHandler
             else
                 lblOutputFolder.Text = myPicturesPath;
             #endregion
+
             ChangeSourceMode();
+
+            SetMaxImageSize();
         }
 
         #region Handling user choices
@@ -157,6 +167,8 @@ namespace UncasImageHandler
             if (btnSaveResizedImages.Text == ResizeText)
             {
                 btnSaveResizedImages.Text = CancelText;
+                Properties.Settings.Default.MaxImageSize = GetMaxImageSize();
+                Properties.Settings.Default.Save();
                 DoResizeWorkAsync();
             }
             else
@@ -290,17 +302,25 @@ namespace UncasImageHandler
 
         #region The actual resizing methods
 
+        private void SetMaxImageSize()
+        {
+            int maxSize = Properties.Settings.Default.MaxImageSize;
+            foreach (Control c in gbMaxSize.Controls)
+            {
+                RadioButton rb = (RadioButton)c;
+                if (rb != null)
+                    rb.Checked = maxSize == Int32.Parse(rb.Text);
+            }
+        }
+
         private int GetMaxImageSize()
         {
             int maxSize = 1600;
             foreach (Control c in gbMaxSize.Controls)
             {
-                if (c is RadioButton)
-                {
-                    RadioButton rb = (RadioButton)c;
-                    if (rb.Checked)
-                        maxSize = Int32.Parse(rb.Text);
-                }
+                RadioButton rb = (RadioButton)c;
+                if (rb != null && rb.Checked)
+                    maxSize = Int32.Parse(rb.Text);
             }
             return maxSize;
         }

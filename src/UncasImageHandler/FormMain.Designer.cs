@@ -295,7 +295,7 @@
             this.gbOutputFolder.TabStop = false;
             this.gbOutputFolder.Text = "Vælg mappe til de nye billeder";
             // 
-            // Form1
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -306,7 +306,7 @@
             this.Controls.Add(this.gbSourceMode);
             this.Controls.Add(this.gbMaxSize);
             this.Controls.Add(this.btnSaveResizedImages);
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "Lav billeder mindre";
             this.gbMaxSize.ResumeLayout(false);
             this.gbMaxSize.PerformLayout();
