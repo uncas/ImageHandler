@@ -8,5 +8,8 @@
     <Setting Name="OutputFolderPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="MaxImageSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1600</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
