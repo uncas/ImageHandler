@@ -8,14 +8,14 @@ using Uncas.Drawing;
 
 namespace UncasImageHandler
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
         #region Constructor
 
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
-            this.Load += new EventHandler(Form1_Load);
+            this.Load += new EventHandler(FormMain_Load);
         }
 
         #endregion
@@ -30,7 +30,7 @@ namespace UncasImageHandler
 
         #region Event and method cycle
 
-        void Form1_Load(object sender, EventArgs e)
+        void FormMain_Load(object sender, EventArgs e)
         {
             btnSaveResizedImages.Text = ResizeText;
 
