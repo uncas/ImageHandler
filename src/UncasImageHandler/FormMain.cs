@@ -30,48 +30,74 @@ namespace UncasImageHandler
 
         #region Event and method cycle
 
-        void FormMain_Load(object sender, EventArgs e)
+        void FormMain_Load
+            (object sender
+            , EventArgs e)
         {
             btnSaveResizedImages.Text = ResizeText;
 
             #region Subscribes to event handlers
-            rbChooseFiles.CheckedChanged += new EventHandler(rbSourceMode_CheckedChanged);
-            rbChooseFolder.CheckedChanged += new EventHandler(rbSourceMode_CheckedChanged);
-            btnChooseInputFolder.Click += new EventHandler(btnChooseInputFolder_Click);
-            btnChooseInputFiles.Click += new EventHandler(btnChooseInputFiles_Click);
-            btnChooseOutputFolder.Click += new EventHandler(btnChooseOutputFolder_Click);
-            btnClear.Click += new EventHandler(btnClear_Click);
-            btnSaveResizedImages.Click += new EventHandler(btnSaveResizedImages_Click);
-            resizeWorker.DoWork += new DoWorkEventHandler(resizeWorker_DoWork);
-            resizeWorker.ProgressChanged +=
-                new ProgressChangedEventHandler(resizeWorker_ProgressChanged);
-            resizeWorker.RunWorkerCompleted +=
-                new RunWorkerCompletedEventHandler(resizeWorker_RunWorkerCompleted);
+            rbChooseFiles.CheckedChanged
+                += new EventHandler(rbSourceMode_CheckedChanged);
+            rbChooseFolder.CheckedChanged
+                += new EventHandler(rbSourceMode_CheckedChanged);
+            btnChooseInputFolder.Click
+                += new EventHandler(btnChooseInputFolder_Click);
+            btnChooseInputFiles.Click
+                += new EventHandler(btnChooseInputFiles_Click);
+            btnChooseOutputFolder.Click
+                += new EventHandler(btnChooseOutputFolder_Click);
+            btnClear.Click
+                += new EventHandler(btnClear_Click);
+            btnSaveResizedImages.Click
+                += new EventHandler(btnSaveResizedImages_Click);
+            resizeWorker.DoWork
+                += new DoWorkEventHandler(resizeWorker_DoWork);
+            resizeWorker.ProgressChanged
+                += new ProgressChangedEventHandler
+                    (resizeWorker_ProgressChanged);
+            resizeWorker.RunWorkerCompleted
+                += new RunWorkerCompletedEventHandler
+                    (resizeWorker_RunWorkerCompleted);
             #endregion
 
             #region Sets folders on file and folder dialogs
-            Environment.SpecialFolder myPictures =
-                Environment.SpecialFolder.MyPictures;
-            string myPicturesPath = Environment.GetFolderPath(myPictures);
+            Environment.SpecialFolder myPictures
+                = Environment.SpecialFolder.MyPictures;
+            string myPicturesPath 
+                = Environment.GetFolderPath(myPictures);
             openFileDialog1.InitialDirectory = myPicturesPath;
-            folderBrowserDialog1.RootFolder = Environment.SpecialFolder.Desktop;
+            folderBrowserDialog1.RootFolder 
+                = Environment.SpecialFolder.Desktop;
             folderBrowserDialog1.SelectedPath = myPicturesPath;
             #endregion
 
             #region Input folder path
-            string inputFolderPath = Properties.Settings.Default.InputFolderPath;
-            if (inputFolderPath != null && inputFolderPath.Trim() != string.Empty)
+            string inputFolderPath 
+                = Properties.Settings.Default.InputFolderPath;
+            if (inputFolderPath != null
+                && inputFolderPath.Trim() != string.Empty)
+            {
                 lblInputFolder.Text = inputFolderPath;
+            }
             else
+            {
                 lblInputFolder.Text = myPicturesPath;
+            }
             #endregion
 
             #region Output folder path
-            string outputFolderPath = Properties.Settings.Default.OutputFolderPath;
-            if (outputFolderPath != null && outputFolderPath.Trim() != string.Empty)
+            string outputFolderPath
+                = Properties.Settings.Default.OutputFolderPath;
+            if (outputFolderPath != null
+                && outputFolderPath.Trim() != string.Empty)
+            {
                 lblOutputFolder.Text = outputFolderPath;
+            }
             else
+            {
                 lblOutputFolder.Text = myPicturesPath;
+            }
             #endregion
 
             ChangeSourceMode();
@@ -98,8 +124,10 @@ namespace UncasImageHandler
 
         void btnChooseInputFolder_Click(object sender, EventArgs e)
         {
-            lblInputFolder.Text = GetFolder(lblInputFolder.Text);
-            Properties.Settings.Default.InputFolderPath = lblInputFolder.Text;
+            lblInputFolder.Text
+                = GetFolder(lblInputFolder.Text);
+            Properties.Settings.Default.InputFolderPath
+                = lblInputFolder.Text;
             Properties.Settings.Default.Save();
         }
 
@@ -118,11 +146,13 @@ namespace UncasImageHandler
                     break;
                 case DialogResult.OK:
                 case DialogResult.Yes:
-                    foreach (string fileName in openFileDialog1.FileNames)
+                    foreach (string fileName
+                        in openFileDialog1.FileNames)
                     {
                         FileInfo fi = new FileInfo(fileName);
                         listBoxFiles.Items.Add(fileName);
-                        folderBrowserDialog1.SelectedPath = fi.DirectoryName;
+                        folderBrowserDialog1.SelectedPath
+                            = fi.DirectoryName;
                         lblOutputFolder.Text = fi.DirectoryName;
                     }
                     break;
@@ -131,8 +161,10 @@ namespace UncasImageHandler
 
         void btnChooseOutputFolder_Click(object sender, EventArgs e)
         {
-            lblOutputFolder.Text = GetFolder(lblOutputFolder.Text);
-            Properties.Settings.Default.OutputFolderPath = lblOutputFolder.Text;
+            lblOutputFolder.Text
+                = GetFolder(lblOutputFolder.Text);
+            Properties.Settings.Default.OutputFolderPath
+                = lblOutputFolder.Text;
             Properties.Settings.Default.Save();
         }
 
@@ -162,12 +194,15 @@ namespace UncasImageHandler
 
         #region Resizing the chosen images
 
-        private void btnSaveResizedImages_Click(object sender, EventArgs e)
+        private void btnSaveResizedImages_Click
+            (object sender
+            , EventArgs e)
         {
             if (btnSaveResizedImages.Text == ResizeText)
             {
                 btnSaveResizedImages.Text = CancelText;
-                Properties.Settings.Default.MaxImageSize = GetMaxImageSize();
+                Properties.Settings.Default.MaxImageSize
+                    = GetMaxImageSize();
                 Properties.Settings.Default.Save();
                 DoResizeWorkAsync();
             }
@@ -199,7 +234,9 @@ namespace UncasImageHandler
 
             public override string ToString()
             {
-                return string.Format("{0}/{1}", this.ResizedNumberOfImages, this.TotalNumberOfImages);
+                return string.Format("{0}/{1}"
+                    , this.ResizedNumberOfImages
+                    , this.TotalNumberOfImages);
             }
         }
 
@@ -212,20 +249,29 @@ namespace UncasImageHandler
             #endregion
             #region Getting the list of images
             string baseOutputFolder = lblOutputFolder.Text;
-            List<ImageToResize> imagesToResize = new List<ImageToResize>();
+            List<ImageToResize> imagesToResize
+                = new List<ImageToResize>();
             if (rbChooseFiles.Checked)
             {
-                ListBox.ObjectCollection items = listBoxFiles.Items;
-                imagesToResize = GetSelectedImages(baseOutputFolder, items);
+                ListBox.ObjectCollection items
+                    = listBoxFiles.Items;
+                imagesToResize
+                    = GetSelectedImages
+                    (baseOutputFolder
+                    , items);
             }
             else if (rbChooseFolder.Checked)
             {
                 string baseInputFolder = lblInputFolder.Text;
-                DirectoryInfo diBase = new DirectoryInfo(baseInputFolder);
+                DirectoryInfo diBase
+                    = new DirectoryInfo(baseInputFolder);
                 try
                 {
-                    GetImagesInSelectedFolder(ref imagesToResize,
-                        diBase.Name, baseOutputFolder, diBase
+                    GetImagesInSelectedFolder
+                        (ref imagesToResize
+                        , diBase.Name
+                        , baseOutputFolder
+                        , diBase
                         , chbxIncludeSubFolders.Checked);
                 }
                 catch (Exception ex)
@@ -264,21 +310,28 @@ namespace UncasImageHandler
                     e.Cancel = true;
                     break;
                 }
-                ResizeImage(itr.OriginalImagePath, itr.ResizedImagePath, sfi.MaxImageSize);
+                ResizeImage(itr.OriginalImagePath
+                    , itr.ResizedImagePath
+                    , sfi.MaxImageSize);
                 filesCompleted++;
             }
             pif.ResizedNumberOfImages = filesCompleted;
             e.Result = pif;
         }
 
-        void resizeWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        void resizeWorker_ProgressChanged
+            (object sender
+            , ProgressChangedEventArgs e)
         {
-            ProcessedImagesInfo pif = (ProcessedImagesInfo)e.UserState;
+            ProcessedImagesInfo pif
+                = (ProcessedImagesInfo)e.UserState;
             lblNumberCompleted.Text = pif.ToString();
             progressBar1.Value = e.ProgressPercentage;
         }
 
-        void resizeWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        void resizeWorker_RunWorkerCompleted
+            (object sender
+            , RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
             {
@@ -286,7 +339,8 @@ namespace UncasImageHandler
             }
             else
             {
-                ProcessedImagesInfo pif = (ProcessedImagesInfo)e.Result;
+                ProcessedImagesInfo pif
+                    = (ProcessedImagesInfo)e.Result;
                 lblNumberCompleted.Text = pif.ToString();
                 progressBar1.Value = 100;
                 MessageBox.Show("Billederne blev gemt");
@@ -325,10 +379,12 @@ namespace UncasImageHandler
             return maxSize;
         }
 
-        private List<ImageToResize> GetSelectedImages(string baseOutputFolder
+        private List<ImageToResize> GetSelectedImages
+            (string baseOutputFolder
             , ListBox.ObjectCollection items)
         {
-            List<ImageToResize> imagesToResize = new List<ImageToResize>();
+            List<ImageToResize> imagesToResize
+                = new List<ImageToResize>();
             foreach (string filePath in items)
             {
                 FileInfo fi = new FileInfo(filePath);
@@ -343,40 +399,83 @@ namespace UncasImageHandler
             return imagesToResize;
         }
 
-        private void GetImagesInSelectedFolder(ref List<ImageToResize> imagesToResize
+        private void GetImagesInSelectedFolder
+            (ref List<ImageToResize> imagesToResize
             , string relativeInputFolderPath
-            , string baseOutputFolder, DirectoryInfo di, bool includeSubFolders)
+            , string baseOutputFolder
+            , DirectoryInfo di
+            , bool includeSubFolders)
         {
             string inputFolderPath = di.FullName;
-            string outputFolderPath = Path.Combine(baseOutputFolder, relativeInputFolderPath);
-            DirectoryInfo diOutput = new DirectoryInfo(outputFolderPath);
+            string outputFolderPath
+                = Path.Combine(baseOutputFolder
+                , relativeInputFolderPath);
+            DirectoryInfo diOutput
+                = new DirectoryInfo(outputFolderPath);
             // Getting images in this folder
-            GetFilesByExtension(imagesToResize, di, outputFolderPath, diOutput, "*.jpg");
-            GetFilesByExtension(imagesToResize, di, outputFolderPath, diOutput, "*.jpeg");
-            GetFilesByExtension(imagesToResize, di, outputFolderPath, diOutput, "*.bmp");
-            GetFilesByExtension(imagesToResize, di, outputFolderPath, diOutput, "*.png");
-            GetFilesByExtension(imagesToResize, di, outputFolderPath, diOutput, "*.gif");
+            GetFilesByExtension
+                (imagesToResize
+                , di
+                , outputFolderPath
+                , diOutput
+                , "*.jpg");
+            GetFilesByExtension
+                (imagesToResize
+                , di
+                , outputFolderPath
+                , diOutput
+                , "*.jpeg");
+            GetFilesByExtension
+                (imagesToResize
+                , di
+                , outputFolderPath
+                , diOutput
+                , "*.bmp");
+            GetFilesByExtension
+                (imagesToResize
+                , di
+                , outputFolderPath
+                , diOutput
+                , "*.png");
+            GetFilesByExtension
+                (imagesToResize
+                , di
+                , outputFolderPath
+                , diOutput
+                , "*.gif");
             if (includeSubFolders)
             {
                 // Resizing images in subfolders
                 foreach (DirectoryInfo diChild in di.GetDirectories())
                 {
-                    string childRelativePath = Path.Combine(relativeInputFolderPath, diChild.Name);
-                    GetImagesInSelectedFolder(ref imagesToResize, childRelativePath, baseOutputFolder
-                         , diChild, includeSubFolders);
+                    string childRelativePath
+                        = Path.Combine
+                        (relativeInputFolderPath
+                        , diChild.Name);
+                    GetImagesInSelectedFolder
+                        (ref imagesToResize
+                        , childRelativePath
+                        , baseOutputFolder
+                        , diChild
+                        , includeSubFolders);
                 }
             }
         }
 
-        private void GetFilesByExtension(List<ImageToResize> imagesToResize, DirectoryInfo di
-            , string outputFolderPath, DirectoryInfo diOutput, string extension)
+        private void GetFilesByExtension
+            (List<ImageToResize> imagesToResize
+            , DirectoryInfo di
+            , string outputFolderPath
+            , DirectoryInfo diOutput
+            , string extension)
         {
             foreach (FileInfo fi in di.GetFiles(extension))
             {
                 if (!diOutput.Exists)
                     diOutput.Create();
                 string originalImagePath = fi.FullName;
-                string resizedImagePath = Path.Combine(outputFolderPath, fi.Name);
+                string resizedImagePath
+                    = Path.Combine(outputFolderPath, fi.Name);
                 imagesToResize.Add(new ImageToResize
                 {
                     OriginalImagePath = originalImagePath,
@@ -385,15 +484,20 @@ namespace UncasImageHandler
             }
         }
 
-        private void ResizeImage(string originalImagePath, string resizedImagePath
+        private void ResizeImage
+            (string originalImagePath
+            , string resizedImagePath
             , int maxImageSize)
         {
             try
             {
-                if (File.Exists(originalImagePath) && !File.Exists(resizedImagePath))
+                if (File.Exists(originalImagePath)
+                    && !File.Exists(resizedImagePath))
                 {
-                    byte[] originalBytes = File.ReadAllBytes(originalImagePath);
-                    byte[] resizedBytes = ih.GetThumbnail(originalBytes, maxImageSize);
+                    byte[] originalBytes
+                        = File.ReadAllBytes(originalImagePath);
+                    byte[] resizedBytes
+                        = ih.GetThumbnail(originalBytes, maxImageSize);
                     originalBytes = null;
                     File.WriteAllBytes(resizedImagePath, resizedBytes);
                     resizedBytes = null;
