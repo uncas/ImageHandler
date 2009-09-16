@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -64,16 +65,16 @@ namespace UncasImageHandler
             #region Sets folders on file and folder dialogs
             Environment.SpecialFolder myPictures
                 = Environment.SpecialFolder.MyPictures;
-            string myPicturesPath 
+            string myPicturesPath
                 = Environment.GetFolderPath(myPictures);
             openFileDialog1.InitialDirectory = myPicturesPath;
-            folderBrowserDialog1.RootFolder 
+            folderBrowserDialog1.RootFolder
                 = Environment.SpecialFolder.Desktop;
             folderBrowserDialog1.SelectedPath = myPicturesPath;
             #endregion
 
             #region Input folder path
-            string inputFolderPath 
+            string inputFolderPath
                 = Properties.Settings.Default.InputFolderPath;
             if (inputFolderPath != null
                 && inputFolderPath.Trim() != string.Empty)
@@ -190,10 +191,6 @@ namespace UncasImageHandler
             listBoxFiles.Items.Clear();
         }
 
-        #endregion
-
-        #region Resizing the chosen images
-
         private void btnSaveResizedImages_Click
             (object sender
             , EventArgs e)
@@ -204,7 +201,7 @@ namespace UncasImageHandler
                 Properties.Settings.Default.MaxImageSize
                     = GetMaxImageSize();
                 Properties.Settings.Default.Save();
-                DoResizeWorkAsync();
+                PrepareResizeWorkAsync();
             }
             else
             {
@@ -212,6 +209,54 @@ namespace UncasImageHandler
                 btnSaveResizedImages.Text = ResizeText;
             }
         }
+
+        private void PrepareResizeWorkAsync()
+        {
+            #region Initializing
+            gbSourceMode.Enabled = false;
+            gbOutputFolder.Enabled = false;
+            gbMaxSize.Enabled = false;
+            #endregion
+            DoResizeWorkAsync
+                (lblOutputFolder.Text
+                , rbChooseFiles.Checked
+                , rbChooseFolder.Checked
+                , lblInputFolder.Text
+                , chbxIncludeSubFolders.Checked
+                , listBoxFiles.Items
+                , GetMaxImageSize());
+        }
+
+        private void SetMaxImageSize()
+        {
+            int maxSize = Properties.Settings.Default.MaxImageSize;
+            foreach (Control c in gbMaxSize.Controls)
+            {
+                RadioButton rb = (RadioButton)c;
+                if (rb != null)
+                {
+                    rb.Checked = maxSize == Int32.Parse(rb.Text);
+                }
+            }
+        }
+
+        private int GetMaxImageSize()
+        {
+            int maxSize = 1600;
+            foreach (Control c in gbMaxSize.Controls)
+            {
+                RadioButton rb = (RadioButton)c;
+                if (rb != null && rb.Checked)
+                {
+                    maxSize = Int32.Parse(rb.Text);
+                }
+            }
+            return maxSize;
+        }
+
+        #endregion
+
+        #region Resizing the chosen images
 
         #region Running in background thread
 
@@ -240,29 +285,28 @@ namespace UncasImageHandler
             }
         }
 
-        private void DoResizeWorkAsync()
+        private void DoResizeWorkAsync
+            (string baseOutputFolder
+            , bool chooseFiles
+            , bool chooseFolder
+            , string baseInputFolder
+            , bool includeSubFolders
+            , IEnumerable filePaths
+            , int maxImageSize
+            )
         {
-            #region Initializing
-            gbSourceMode.Enabled = false;
-            gbOutputFolder.Enabled = false;
-            gbMaxSize.Enabled = false;
-            #endregion
             #region Getting the list of images
-            string baseOutputFolder = lblOutputFolder.Text;
             List<ImageToResize> imagesToResize
                 = new List<ImageToResize>();
-            if (rbChooseFiles.Checked)
+            if (chooseFiles)
             {
-                ListBox.ObjectCollection items
-                    = listBoxFiles.Items;
                 imagesToResize
                     = GetSelectedImages
                     (baseOutputFolder
-                    , items);
+                    , filePaths);
             }
-            else if (rbChooseFolder.Checked)
+            else if (chooseFolder)
             {
-                string baseInputFolder = lblInputFolder.Text;
                 DirectoryInfo diBase
                     = new DirectoryInfo(baseInputFolder);
                 try
@@ -272,7 +316,7 @@ namespace UncasImageHandler
                         , diBase.Name
                         , baseOutputFolder
                         , diBase
-                        , chbxIncludeSubFolders.Checked);
+                        , includeSubFolders);
                 }
                 catch (Exception ex)
                 {
@@ -284,7 +328,7 @@ namespace UncasImageHandler
             SelectedImagesInfo sfi = new SelectedImagesInfo
             {
                 ImagesToResize = imagesToResize,
-                MaxImageSize = GetMaxImageSize()
+                MaxImageSize = maxImageSize
             };
             resizeWorker.RunWorkerAsync(sfi);
             #endregion
@@ -319,6 +363,7 @@ namespace UncasImageHandler
             e.Result = pif;
         }
 
+        // TODO: Create event in the new class to pass this on:
         void resizeWorker_ProgressChanged
             (object sender
             , ProgressChangedEventArgs e)
@@ -329,6 +374,7 @@ namespace UncasImageHandler
             progressBar1.Value = e.ProgressPercentage;
         }
 
+        // TODO: Create event in the new class to pass this on:
         void resizeWorker_RunWorkerCompleted
             (object sender
             , RunWorkerCompletedEventArgs e)
@@ -356,36 +402,13 @@ namespace UncasImageHandler
 
         #region The actual resizing methods
 
-        private void SetMaxImageSize()
-        {
-            int maxSize = Properties.Settings.Default.MaxImageSize;
-            foreach (Control c in gbMaxSize.Controls)
-            {
-                RadioButton rb = (RadioButton)c;
-                if (rb != null)
-                    rb.Checked = maxSize == Int32.Parse(rb.Text);
-            }
-        }
-
-        private int GetMaxImageSize()
-        {
-            int maxSize = 1600;
-            foreach (Control c in gbMaxSize.Controls)
-            {
-                RadioButton rb = (RadioButton)c;
-                if (rb != null && rb.Checked)
-                    maxSize = Int32.Parse(rb.Text);
-            }
-            return maxSize;
-        }
-
         private List<ImageToResize> GetSelectedImages
             (string baseOutputFolder
-            , ListBox.ObjectCollection items)
+            , IEnumerable filePaths)
         {
             List<ImageToResize> imagesToResize
                 = new List<ImageToResize>();
-            foreach (string filePath in items)
+            foreach (string filePath in filePaths)
             {
                 FileInfo fi = new FileInfo(filePath);
                 string smallerFilePath =
@@ -514,6 +537,7 @@ namespace UncasImageHandler
 
         #endregion
 
+        // TODO: Create event in the new class to pass this on:
         private void HandleException(Exception ex)
         {
             MessageBox.Show(ex.ToString());
