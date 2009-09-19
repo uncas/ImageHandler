@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<project name="UncasImageHandler" default="all">
+
+    <property name="configuration" value="release" />
+    <property name="framework.version" value="v2.0.50727" />
+    
+    <property name="msbuild"
+        value="C:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild.exe" />
+
+    <property name="publishPath" 
+        value="\\aragorn\publish\ImageHandler\bin\" />
+
+
+    <target name="all"/>
+
+    <target name="clean">
+        <delete dir="build" if="${directory::exists('build')}" />
+    </target>
+    
+    <target name="cleanProject">
+        <delete dir="${projectFolder}\bin" />
+        <delete dir="${projectFolder}\obj" />
+    </target>
+
+    <target name="cleanAll" depends="clean">
+        <property name="projectFolder" value="src\AccessProviders" />
+        <call target="cleanProject" />
+        <property name="projectFolder" value="src\ConsoleAppTest\ConsoleApplication1" />
+        <call target="cleanProject" />
+        <property name="projectFolder" value="src\FSharpTestApp" />
+        <call target="cleanProject" />
+        <delete>
+            <fileset basedir="src\uncas\Bin">
+                <include name="**\*.dll" />
+                <include name="**\*.pdb" />
+                <include name="**\*.xml" />
+            </fileset>
+        </delete>
+        <delete dir="src\uncas\Bin\ar"  if="${directory::exists('src\uncas\Bin\ar')}" />
+        <delete dir="src\uncas\Bin\cs"  if="${directory::exists('src\uncas\Bin\cs')}" />
+        <delete dir="src\uncas\Bin\da"  if="${directory::exists('src\uncas\Bin\da')}" />
+        <delete dir="src\uncas\Bin\de"  if="${directory::exists('src\uncas\Bin\de')}" />
+        <delete dir="src\uncas\Bin\es"  if="${directory::exists('src\uncas\Bin\es')}" />
+        <delete dir="src\uncas\Bin\fr"  if="${directory::exists('src\uncas\Bin\fr')}" />
+        <delete dir="src\uncas\Bin\he"  if="${directory::exists('src\uncas\Bin\he')}" />
+        <delete dir="src\uncas\Bin\hi"  if="${directory::exists('src\uncas\Bin\hi')}" />
+        <delete dir="src\uncas\Bin\it"  if="${directory::exists('src\uncas\Bin\it')}" />
+        <delete dir="src\uncas\Bin\ja"  if="${directory::exists('src\uncas\Bin\ja')}" />
+        <delete dir="src\uncas\Bin\ko"  if="${directory::exists('src\uncas\Bin\ko')}" />
+        <delete dir="src\uncas\Bin\nl"  if="${directory::exists('src\uncas\Bin\nl')}" />
+        <delete dir="src\uncas\Bin\pt"  if="${directory::exists('src\uncas\Bin\pt')}" />
+        <delete dir="src\uncas\Bin\ru"  if="${directory::exists('src\uncas\Bin\ru')}" />
+        <delete dir="src\uncas\Bin\tr-TR"  if="${directory::exists('src\uncas\Bin\tr-TR')}" />
+        <delete dir="src\uncas\Bin\zh-CHS"  if="${directory::exists('src\uncas\Bin\zh-CHS')}" />
+        <delete dir="src\uncas\Bin\zh-CHT"  if="${directory::exists('src\uncas\Bin\zh-CHT')}" />
+        <delete dir="src\uncas\Bin\zh-Hans"  if="${directory::exists('src\uncas\Bin\zh-Hans')}" />
+        <delete dir="src\uncas\Bin\zh-Hant"  if="${directory::exists('src\uncas\Bin\zh-Hant')}" />
+        <delete>
+            <fileset basedir="src\uncas\ClientBin">
+                <include name="**\*.xap" />
+            </fileset>
+        </delete>
+        <delete dir="src\Uncas.Drawing\bin"  if="${directory::exists('src\Uncas.Drawing\bin')}" />
+        <delete dir="src\Uncas.Drawing\obj"  if="${directory::exists('src\Uncas.Drawing\obj')}" />
+        <delete dir="src\Uncas.Google\bin"  if="${directory::exists('src\Uncas.Google\bin')}" />
+        <delete dir="src\Uncas.Google\obj"  if="${directory::exists('src\Uncas.Google\obj')}" />
+        <delete dir="src\Uncas.SlideShow\bin"  if="${directory::exists('src\Uncas.SlideShow\bin')}" />
+        <delete dir="src\Uncas.SlideShow\obj"  if="${directory::exists('src\Uncas.SlideShow\obj')}" />
+        <delete dir="src\Uncas.Web\bin"  if="${directory::exists('src\Uncas.Web\bin')}" />
+        <delete dir="src\Uncas.Web\obj"  if="${directory::exists('src\Uncas.Web\obj')}" />
+        <delete dir="src\Uncas.Web.Client.Calendar\bin"  if="${directory::exists('src\Uncas.Web.Client.Calendar\bin')}" />
+        <delete dir="src\Uncas.Web.Client.Calendar\obj"  if="${directory::exists('src\Uncas.Web.Client.Calendar\obj')}" />
+        <property name="projectFolder" value="src\uncasdk.ApplicationServices" />
+        <call target="cleanProject" />
+        <property name="projectFolder" value="src\uncasdk.FSharpTest" />
+        <call target="cleanProject" />
+        <property name="projectFolder" value="src\uncasdk.MockRepository" />
+        <call target="cleanProject" />
+        <property name="projectFolder" value="src\uncasdk.Tests" />
+        <call target="cleanProject" />
+        <delete dir="src\uncasdk.BLL\bin"  if="${directory::exists('src\uncasdk.BLL\bin')}" />
+        <delete dir="src\uncasdk.BLL\obj"  if="${directory::exists('src\uncasdk.BLL\obj')}" />
+        <delete dir="src\uncasdk.BO\bin"  if="${directory::exists('src\uncasdk.BO\bin')}" />
+        <delete dir="src\uncasdk.BO\obj"  if="${directory::exists('src\uncasdk.BO\obj')}" />
+        <delete dir="src\uncasdk.CL\bin"  if="${directory::exists('src\uncasdk.CL\bin')}" />
+        <delete dir="src\uncasdk.CL\obj"  if="${directory::exists('src\uncasdk.CL\obj')}" />
+        <delete dir="src\uncasdk.Common\bin"  if="${directory::exists('src\uncasdk.Common\bin')}" />
+        <delete dir="src\uncasdk.Common\obj"  if="${directory::exists('src\uncasdk.Common\obj')}" />
+        <delete dir="src\uncasdk.DAL\bin"  if="${directory::exists('src\uncasdk.DAL\bin')}" />
+        <delete dir="src\uncasdk.DAL\obj"  if="${directory::exists('src\uncasdk.DAL\obj')}" />
+        <delete dir="src\uncasdk.FileUploader\bin"  if="${directory::exists('src\uncasdk.FileUploader\bin')}" />
+        <delete dir="src\uncasdk.FileUploader\obj"  if="${directory::exists('src\uncasdk.FileUploader\obj')}" />
+        <delete dir="src\uncasdk.Food\bin"  if="${directory::exists('src\uncasdk.Food\bin')}" />
+        <delete dir="src\uncasdk.Food\obj"  if="${directory::exists('src\uncasdk.Food\obj')}" />
+        <delete dir="src\uncasdk.FrontSplash\bin"  if="${directory::exists('src\uncasdk.FrontSplash\bin')}" />
+        <delete dir="src\uncasdk.FrontSplash\obj"  if="${directory::exists('src\uncasdk.FrontSplash\obj')}" />
+        <delete dir="src\uncasdk.RecognitionGame\bin"  if="${directory::exists('src\uncasdk.RecognitionGame\bin')}" />
+        <delete dir="src\uncasdk.RecognitionGame\obj"  if="${directory::exists('src\uncasdk.RecognitionGame\obj')}" />
+        <delete dir="src\uncasdk.Resources\bin"  if="${directory::exists('src\uncasdk.Resources\bin')}" />
+        <delete dir="src\uncasdk.Resources\obj"  if="${directory::exists('src\uncasdk.Resources\obj')}" />
+    </target>
+
+
+    <target name="init" depends="clean">
+        <mkdir dir="build" />
+    </target>
+
+    <target name="compile" depends="init">
+        <exec program="${msbuild}"
+              commandline="src\UncasImageHandler.sln /p:Configuration=${configuration}"/>
+    </target>
+
+    <target name="publish" depends="compile">
+        <property name="app" value="UncasImageHandler" />
+        <call target="publishApp" />
+
+        <property name="app" value="UncasImageHandler.Console" />
+        <call target="publishApp" />
+    </target>
+
+    <target name="publishApp">
+        <mkdir dir="${publishPath}" />
+        <copy todir="${publishPath}">
+            <fileset basedir="src\${app}\bin\${configuration}">
+                <include name="*.exe" />
+                <include name="*.dll" />
+                <include name="*.config" />
+            </fileset>
+        </copy>
+    </target>
+
+</project>
