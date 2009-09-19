@@ -254,12 +254,13 @@ namespace UncasImageHandler
             #endregion
             ri.DoResizeWorkAsync
                 (lblOutputFolder.Text
+                , GetMaxImageSize()
                 , rbChooseFiles.Checked
+                , listBoxFiles.Items
                 , rbChooseFolder.Checked
                 , lblInputFolder.Text
                 , chbxIncludeSubFolders.Checked
-                , listBoxFiles.Items
-                , GetMaxImageSize());
+                );
         }
 
         private void SetMaxImageSize()

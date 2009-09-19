@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncasImageHandler", "UncasI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uncas.Drawing", "Uncas.Drawing\Uncas.Drawing.csproj", "{A3F86D5F-6762-491A-A173-6B278A236F6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncasImageHandler.Console", "UncasImageHandler.Console\UncasImageHandler.Console.csproj", "{4D2BF924-01C4-40F2-BAAB-C130E952A2A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{A3F86D5F-6762-491A-A173-6B278A236F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3F86D5F-6762-491A-A173-6B278A236F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3F86D5F-6762-491A-A173-6B278A236F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D2BF924-01C4-40F2-BAAB-C130E952A2A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D2BF924-01C4-40F2-BAAB-C130E952A2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D2BF924-01C4-40F2-BAAB-C130E952A2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D2BF924-01C4-40F2-BAAB-C130E952A2A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
