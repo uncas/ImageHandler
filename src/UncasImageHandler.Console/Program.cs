@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Uncas.Drawing.ImageResizing;
 using System.IO;
-using System.Threading;
+using Uncas.Drawing.ImageResizing;
 
 namespace UncasImageHandler.Console
 {
     class Program
     {
+
         /// <summary>
         /// Mains the specified args.
         /// </summary>
@@ -22,6 +20,9 @@ namespace UncasImageHandler.Console
             Program prg = new Program();
             prg.Run(args);
         }
+
+
+        #region Constructor
 
         public Program()
         {
@@ -39,6 +40,18 @@ namespace UncasImageHandler.Console
                     <ResizeFailedEventArgs>
                     (_ri_ResizeFailed);
         }
+
+        #endregion
+
+
+        #region Private fields
+
+        private ResizeImages _ri;
+
+        #endregion
+
+
+        #region Private methods
 
         private void Run(string[] args)
         {
@@ -82,6 +95,58 @@ namespace UncasImageHandler.Console
                 , maxImageSize);
         }
 
+        private void DoWork
+            (string baseInputFolder
+            , bool includeSubfolders
+            , string baseOutputFolder
+            , int maxImageSize)
+        {
+            _ri.DoResizeWorkAsync
+                (baseOutputFolder
+                , maxImageSize
+                , false
+                , null
+                , true
+                , baseInputFolder
+                , includeSubfolders);
+            System.Console.ReadKey();
+        }
+
+        private void _ri_ResizeProgressChanged
+            (object sender
+            , ResizeProgressEventArgs e)
+        {
+            System.Console.WriteLine
+                ("Processed {0}% ({1} of {2} images)."
+                , e.ProcessedImages.Percentage
+                , e.ProcessedImages.ResizedNumberOfImages
+                , e.ProcessedImages.TotalNumberOfImages);
+        }
+
+        private void _ri_ResizeCompleted
+            (object sender
+            , ResizeCompletedEventArgs e)
+        {
+            Exit();
+        }
+
+        private void _ri_ResizeFailed
+           (object sender
+           , ResizeFailedEventArgs e)
+        {
+            Exit();
+        }
+
+        private void Exit()
+        {
+            Environment.Exit(-1);
+        }
+
+        #endregion
+
+
+        #region Private static methods
+
         private static string GetValueFromArgs
             (string[] args
             , string command
@@ -118,7 +183,7 @@ namespace UncasImageHandler.Console
             return false;
         }
 
-        private string GetFolderPath(string folder)
+        private static string GetFolderPath(string folder)
         {
             string folderPath = string.Empty;
             if (folder.Contains(":")
@@ -135,54 +200,7 @@ namespace UncasImageHandler.Console
             return folderPath;
         }
 
-        private ResizeImages _ri;
-
-        private void DoWork
-            (string baseInputFolder
-            , bool includeSubfolders
-            , string baseOutputFolder
-            , int maxImageSize)
-        {
-            _ri.DoResizeWorkAsync
-                (baseOutputFolder
-                , maxImageSize
-                , false
-                , null
-                , true
-                , baseInputFolder
-                , includeSubfolders);
-            System.Console.ReadKey();
-        }
-
-        void _ri_ResizeProgressChanged
-            (object sender
-            , ResizeProgressEventArgs e)
-        {
-            System.Console.WriteLine
-                ("Processed {0}% ({1} of {2} images)."
-                , e.ProcessedImages.Percentage
-                , e.ProcessedImages.ResizedNumberOfImages
-                , e.ProcessedImages.TotalNumberOfImages);
-        }
-
-        void _ri_ResizeCompleted
-            (object sender
-            , ResizeCompletedEventArgs e)
-        {
-            Exit();
-        }
-
-        void _ri_ResizeFailed
-            (object sender
-            , ResizeFailedEventArgs e)
-        {
-            Exit();
-        }
-
-        private void Exit()
-        {
-            Environment.Exit(-1);
-        }
+        #endregion
 
     }
 }
