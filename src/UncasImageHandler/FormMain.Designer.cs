@@ -49,7 +49,6 @@
             this.btnChooseInputFolder = new System.Windows.Forms.Button();
             this.rbChooseFiles = new System.Windows.Forms.RadioButton();
             this.rbChooseFolder = new System.Windows.Forms.RadioButton();
-            this.resizeWorker = new System.ComponentModel.BackgroundWorker();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblNumberCompleted = new System.Windows.Forms.Label();
             this.gbOutputFolder = new System.Windows.Forms.GroupBox();
@@ -263,11 +262,6 @@
             this.rbChooseFolder.Text = "Vælg mappe";
             this.rbChooseFolder.UseVisualStyleBackColor = true;
             // 
-            // resizeWorker
-            // 
-            this.resizeWorker.WorkerReportsProgress = true;
-            this.resizeWorker.WorkerSupportsCancellation = true;
-            // 
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(11, 341);
@@ -342,7 +336,6 @@
         private System.Windows.Forms.Button btnChooseInputFolder;
         private System.Windows.Forms.Label lblInputFolder;
         private System.Windows.Forms.CheckBox chbxIncludeSubFolders;
-        private System.ComponentModel.BackgroundWorker resizeWorker;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lblNumberCompleted;
         private System.Windows.Forms.GroupBox gbOutputFolder;

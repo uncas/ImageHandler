@@ -102,7 +102,7 @@ namespace UncasImageHandler
                 += new EventHandler<ResizeCompletedEventArgs>
                     (ri_ResizeCompleted);
 
-            ri.ResizeFailed 
+            ri.ResizeFailed
                 += new EventHandler<ResizeFailedEventArgs>
                     (ri_ResizeFailed);
         }
@@ -240,7 +240,7 @@ namespace UncasImageHandler
             }
             else
             {
-                resizeWorker.CancelAsync();
+                ri.CancelResizeWork();
                 btnSaveResizedImages.Text = ResizeText;
             }
         }
