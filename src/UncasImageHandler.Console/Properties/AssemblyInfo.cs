@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("UncasImageHandler.Console")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("A")]
+[assembly: AssemblyCompany("Uncas")]
 [assembly: AssemblyProduct("UncasImageHandler.Console")]
 [assembly: AssemblyCopyright("Copyright © A 2009")]
 [assembly: AssemblyTrademark("")]
