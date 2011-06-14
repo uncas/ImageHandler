@@ -5,10 +5,10 @@
     <property name="framework.version" value="v2.0.50727" />
     
     <property name="msbuild"
-        value="C:\WINDOWS\Microsoft.NET\Framework\v3.5\msbuild.exe" />
+        value="C:\WINDOWS\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe" />
 
     <property name="publishPath" 
-        value="\\aragorn\publish\ImageHandler\" />
+        value="d:\users\ole\documents\publish\ImageHandler\" />
 
 
     <target name="all"/>
