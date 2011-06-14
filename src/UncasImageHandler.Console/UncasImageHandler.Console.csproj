@@ -15,7 +15,7 @@
     <ManifestCertificateThumbprint>5F0C2BE908C5ECEE3C0B699E68756ADB817DFA3B</ManifestCertificateThumbprint>
     <ManifestKeyFile>UncasImageHandler.Console_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>\\aragorn\publish\ImageHandler\ConsoleApp\</PublishUrl>
     <Install>true</Install>
@@ -65,9 +65,6 @@
       <Project>{A3F86D5F-6762-491A-A173-6B278A236F6D}</Project>
       <Name>Uncas.Drawing</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="UncasImageHandler.Console_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

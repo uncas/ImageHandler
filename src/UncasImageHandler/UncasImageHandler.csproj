@@ -15,7 +15,7 @@
     <ManifestCertificateThumbprint>8FEDA1A5FBCA3E6C0A363F03F8CC3F08FF7FBA66</ManifestCertificateThumbprint>
     <ManifestKeyFile>UncasImageHandler_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>\\ARAGORN\Publish\ImageHandler\WinApp\</PublishUrl>
     <Install>true</Install>
@@ -88,7 +88,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="UncasImageHandler_TemporaryKey.pfx" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
