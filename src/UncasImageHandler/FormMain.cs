@@ -118,7 +118,7 @@ namespace UncasImageHandler
             (object sender
             , ResizeCompletedEventArgs e)
         {
-            if (e.Cancelled)
+            if (e.Canceled)
             {
                 MessageBox.Show("Arbejdet blev afbrudt");
             }
