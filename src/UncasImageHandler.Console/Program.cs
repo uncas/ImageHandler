@@ -4,13 +4,12 @@ using Uncas.Drawing.ImageResizing;
 
 namespace UncasImageHandler.Console
 {
-    class Program
+    class Program : IDisposable
     {
-
         /// <summary>
-        /// Mains the specified args.
+        /// Starts the main program.
         /// </summary>
-        /// <param name="args">The args.</param>
+        /// <param name="args">The command line arguments.</param>
         /// <example>
         ///     -i Photos -o Smaller -r -s 640
         ///     -i c:\Docs\Photos -o d:\Backup\Photos_small -r -s 640
@@ -20,7 +19,6 @@ namespace UncasImageHandler.Console
             Program prg = new Program();
             prg.Run(args);
         }
-
 
         #region Constructor
 
@@ -43,13 +41,11 @@ namespace UncasImageHandler.Console
 
         #endregion
 
-
         #region Private fields
 
-        private ResizeImages _ri;
+        private IResizeImages _ri;
 
         #endregion
-
 
         #region Private methods
 
@@ -144,7 +140,6 @@ namespace UncasImageHandler.Console
 
         #endregion
 
-
         #region Private static methods
 
         private static string GetValueFromArgs
@@ -202,5 +197,22 @@ namespace UncasImageHandler.Console
 
         #endregion
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                var ri = _ri as ResizeImages;
+                if (ri != null)
+                {
+                    ri.Dispose();
+                }
+            }
+        }
     }
 }

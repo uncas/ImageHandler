@@ -20,7 +20,7 @@ namespace UncasImageHandler
 
         #region Private fields and properties
 
-        private ResizeImages ri = new ResizeImages();
+        private IResizeImages ri = new ResizeImages();
         private const string ResizeText = "Gem";
         private const string CancelText = "Afbryd";
 
