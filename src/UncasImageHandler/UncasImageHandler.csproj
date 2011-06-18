@@ -12,8 +12,8 @@
     <AssemblyName>UncasImageHandler</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ManifestCertificateThumbprint>95747D4933DF8C07CAF7F424AEB32D1B0BF78DB1</ManifestCertificateThumbprint>
-    <ManifestKeyFile>UncasImageHandler_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>CD52CFBAA6F6AC66194777EAB1722C9C94518541</ManifestCertificateThumbprint>
+    <ManifestKeyFile>UncasImageHandlerKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -57,7 +57,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>UncasImageHandler_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>UncasImageHandlerKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -99,7 +99,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="UncasImageHandler_TemporaryKey.pfx" />
+    <None Include="UncasImageHandlerKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

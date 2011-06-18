@@ -12,8 +12,8 @@
     <AssemblyName>UncasImageHandler.Console</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ManifestCertificateThumbprint>ADD43AB8F2038872AD4ECF9329BE17BA6FF5B362</ManifestCertificateThumbprint>
-    <ManifestKeyFile>UncasImageHandler.Console_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>CD52CFBAA6F6AC66194777EAB1722C9C94518541</ManifestCertificateThumbprint>
+    <ManifestKeyFile>UncasImageHandlerKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -56,7 +56,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>UncasImageHandler.Console_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\UncasImageHandler\UncasImageHandlerKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -101,7 +101,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="UncasImageHandler.Console_TemporaryKey.pfx" />
+    <None Include="..\UncasImageHandler\UncasImageHandlerKey.pfx">
+      <Link>UncasImageHandlerKey.pfx</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
