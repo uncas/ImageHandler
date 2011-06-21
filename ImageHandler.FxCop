@@ -21,7 +21,6 @@
   <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
  </ProjectOptions>
  <Targets>
-  <Target Name="$(ProjectDir)/src/Uncas.Drawing/bin/Debug/Uncas.Drawing.dll" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/src/UncasImageHandler.Console/bin/Debug/UncasImageHandler.Console.exe" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/src/UncasImageHandler/bin/Debug/UncasImageHandler.exe" Analyze="True" AnalyzeAllChildren="True" />
  </Targets>
