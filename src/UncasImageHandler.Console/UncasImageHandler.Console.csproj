@@ -67,9 +67,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Uncas.Drawing\Uncas.Drawing.csproj">
-      <Project>{A3F86D5F-6762-491A-A173-6B278A236F6D}</Project>
-      <Name>Uncas.Drawing</Name>
+    <ProjectReference Include="..\Uncas.Core\Uncas.Core.csproj">
+      <Project>{E4F20F98-4E29-4E1C-8FD4-71F320A54214}</Project>
+      <Name>Uncas.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

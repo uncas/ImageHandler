@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Uncas.Drawing.ImageResizing;
+using Uncas.Core.Drawing.ImageResizing;
 
 namespace UncasImageHandler.Console
 {

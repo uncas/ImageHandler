@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using Uncas.Drawing.ImageResizing;
+using Uncas.Core.Drawing.ImageResizing;
 
 namespace UncasImageHandler
 {
