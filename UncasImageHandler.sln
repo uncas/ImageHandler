@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncasImageHandler", "src\UncasImageHandler\UncasImageHandler.csproj", "{2B772DD4-179D-4256-A669-29B89ED5B8AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UncasImageHandler.Console", "src\UncasImageHandler.Console\UncasImageHandler.Console.csproj", "{4D2BF924-01C4-40F2-BAAB-C130E952A2A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B772DD4-179D-4256-A669-29B89ED5B8AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B772DD4-179D-4256-A669-29B89ED5B8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B772DD4-179D-4256-A669-29B89ED5B8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B772DD4-179D-4256-A669-29B89ED5B8AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D2BF924-01C4-40F2-BAAB-C130E952A2A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D2BF924-01C4-40F2-BAAB-C130E952A2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D2BF924-01C4-40F2-BAAB-C130E952A2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D2BF924-01C4-40F2-BAAB-C130E952A2A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
