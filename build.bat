@@ -1,3 +1,3 @@
 @echo off
-lib\nant\NAnt.exe -buildfile:UncasImageHandler.build %*
+"C:\Program Files (x86)\nant\NAnt.exe" -buildfile:UncasImageHandler.build %*
 pause

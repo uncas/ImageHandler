@@ -8,7 +8,7 @@
         value="C:\WINDOWS\Microsoft.NET\Framework64\v4.0.30319\msbuild.exe" />
 
     <property name="publishPath" 
-        value="d:\users\ole\documents\publish\ImageHandler\" />
+        value="d:\publish\ImageHandler\" />
 
 
     <target name="all"/>
